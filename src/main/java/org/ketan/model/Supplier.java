@@ -30,14 +30,14 @@ public class Supplier {
 	private int supplierId;
 	
 	@Column(name = "supplier_name")
-	private String suppliername;
+	private String supplierName;
 	
 	@Embedded
 	@AttributeOverrides({
 		@AttributeOverride (name = "city", column = @Column(name = "supplier_city")),
 		@AttributeOverride (name = "pincode", column = @Column(name = "supplier_pincode"))
 	})
-	private Address supplieraddress;
+	private Address supplierAddress;
 	
 	@OneToMany(mappedBy = "supplier")
 	private List<StockKeepingUnit> suppliersStocked = new ArrayList<StockKeepingUnit>();

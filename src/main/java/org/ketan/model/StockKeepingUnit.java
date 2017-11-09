@@ -18,7 +18,7 @@ public class StockKeepingUnit {
 	
 	@Id
 	@Column(name = "stock_record_id")
-	private int id;
+	private int stockKeepingUnitId;
 	
 	@ManyToOne
 	@JoinColumn(name = "ref_supplier")
