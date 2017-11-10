@@ -1,4 +1,4 @@
-package org.ketan.dto;
+package org.ketan.business.dto;
 
 import java.util.Date;
 

@@ -1,31 +1,30 @@
-package org.ketan.services;
+package org.ketan.business.service.impl;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import org.ketan.dto.ItemDTO;
-import org.ketan.dto.ItemInDTO;
+import org.ketan.business.dto.ItemDTO;
+import org.ketan.business.dto.ItemInDTO;
 import org.ketan.mapper.BeanMapperAdapter;
-import org.ketan.model.Item;
-import org.ketan.repository.ItemRepository;
+import org.ketan.persistence.dao.ItemDAO;
+import org.ketan.persistence.db.ItemEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ItemService {
+public class ItemServiceImpl {
 
 	@Autowired
-	private ItemRepository itemRepository;
+	private ItemDAO itemRepository;
 	
 	@Autowired
 	private BeanMapperAdapter beanMapper;
 	
 	public List<ItemDTO> getAllItems() {
 		List<ItemDTO> itemsDTOList = new ArrayList<ItemDTO>();
-		Iterable<Item> itemList = itemRepository.findAll();
+		Iterable<ItemEntity> itemList = itemRepository.findAll();
 		
-		for (Item item : itemList) {
+		for (ItemEntity item : itemList) {
 			itemsDTOList.add(beanMapper.map(item, ItemDTO.class));
 		}
 		
@@ -37,12 +36,12 @@ public class ItemService {
 	}
 	
 	public void addItem(ItemInDTO item) {
-		itemRepository.save(beanMapper.map(item, Item.class));
+		itemRepository.save(beanMapper.map(item, ItemEntity.class));
 	}
 	
 	
 	public void updateItem(ItemInDTO item, int id) {
-		itemRepository.save(beanMapper.map(item, Item.class));
+		itemRepository.save(beanMapper.map(item, ItemEntity.class));
 	}
 
 	public void deleteItem(int id) {

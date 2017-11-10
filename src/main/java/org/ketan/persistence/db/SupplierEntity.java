@@ -1,8 +1,7 @@
 
-package org.ketan.model;
+package org.ketan.persistence.db;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.AttributeOverride;
@@ -19,10 +18,6 @@ import javax.persistence.Table;
 
 import org.ketan.helper.Address;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,7 +25,7 @@ import lombok.Setter;
 @Table(name = "supplier")
 @Getter
 @Setter
-public class Supplier {
+public class SupplierEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,6 +43,6 @@ public class Supplier {
 	private Address supplierAddress;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "supplier")
-	private List<StockKeepingUnit> keepingUnits = new ArrayList<StockKeepingUnit>();
+	private List<StockKeepingUnitEntity> keepingUnits = new ArrayList<StockKeepingUnitEntity>();
 
 }

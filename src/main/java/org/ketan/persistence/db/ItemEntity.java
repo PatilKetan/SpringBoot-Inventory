@@ -1,5 +1,5 @@
 
-package org.ketan.model;
+package org.ketan.persistence.db;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,9 +16,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,7 +23,7 @@ import lombok.Setter;
 @Table(name = "item")
 @Getter
 @Setter
-public class Item {
+public class ItemEntity {
 	
 	@Id
 	@Column(name = "Item_Id")
@@ -45,7 +42,7 @@ public class Item {
 	private Date expiryDate;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "item")
-	private List<StockKeepingUnit> keepingUnits = new ArrayList<StockKeepingUnit>();
+	private List<StockKeepingUnitEntity> keepingUnits = new ArrayList<StockKeepingUnitEntity>();
 	
 	
 }

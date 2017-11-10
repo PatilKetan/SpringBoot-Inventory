@@ -1,5 +1,5 @@
 
-package org.ketan.dto;
+package org.ketan.business.dto;
 
 import org.ketan.helper.Address;
 

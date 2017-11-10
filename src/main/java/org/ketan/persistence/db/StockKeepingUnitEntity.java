@@ -1,7 +1,6 @@
-package org.ketan.model;
+package org.ketan.persistence.db;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,23 +11,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Table(name = "stock_keeping_unit")
 @Getter
 @Setter
-@EqualsAndHashCode(exclude = {"supplier","item"})
-@ToString(exclude = {"supplier","item"})
-@JsonIgnoreProperties(value= {"item","supplier"})
-public class StockKeepingUnit {
+public class StockKeepingUnitEntity {
 
 	@Id
 	@Column(name = "stock_record_id")
@@ -37,11 +27,11 @@ public class StockKeepingUnit {
 
 	@ManyToOne
 	@JoinColumn(name = "ref_supplier")
-	private Supplier supplier;
+	private SupplierEntity supplier;
 
 	@ManyToOne
 	@JoinColumn(name = "ref_item")
-	private Item item;
+	private ItemEntity item;
 
 	@Column(name = "entry_date")
 	private Date entryDate;
