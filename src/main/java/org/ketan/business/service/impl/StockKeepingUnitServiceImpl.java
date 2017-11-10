@@ -69,16 +69,26 @@ public class StockKeepingUnitServiceImpl
 
         stockKeepingUnitRepository.save(sku);
     }
-
-    public void deleteStockKeepingUnit(int id)
-    {
+    
+    public void deleteStockKeepingUnit(int id) {
         stockKeepingUnitRepository.delete(id);
     }
 
-    public StockKeepingUnitEntity getStockKeepingUnitForSupplier(int id)
+   
+    public List<StockKeepingUnitDTO> getStockKeepingUnitsForSupplier(int id)
     {
-        return null;
+       List<StockKeepingUnitDTO> dtos =  new ArrayList<StockKeepingUnitDTO>();
+       List<StockKeepingUnitEntity> entities = stockKeepingUnitRepository.findBySupplierSupplierId(id);
+       
+       for (StockKeepingUnitEntity stockKeepingUnitEntity : entities)
+        {
+            dtos.add(beanMapper.map(stockKeepingUnitEntity, StockKeepingUnitDTO.class));
+        }
+       
+       return dtos;
     }
+    
+    
 
     public StockKeepingUnitEntity getStockKeepingUnitForItem(int id)
     {

@@ -18,7 +18,7 @@ public interface StockKeepingUnitService
 
     public void deleteStockKeepingUnit(int id);
 
-    public StockKeepingUnitEntity getStockKeepingUnitForSupplier(int id);
+    public StockKeepingUnitDTO getStockKeepingUnitsForSupplier(int id);
 
     public StockKeepingUnitEntity getStockKeepingUnitForItem(int id);
 

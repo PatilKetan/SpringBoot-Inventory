@@ -31,6 +31,11 @@ public class StockKeepingUnitController {
 	public StockKeepingUnitDTO getStockKeepingUnit(@PathVariable int id){
 		return stockKeepingUnitService.getStockKeepingUnit(id);
 	}
+	
+	@GetMapping("suppliers/{id}")
+    public List<StockKeepingUnitDTO> getStockKeepingUnitsForSupplier(@PathVariable int id){
+        return stockKeepingUnitService.getStockKeepingUnitsForSupplier(id);
+    }
 
 	@PostMapping
 	public void addStockKeepingUnit(@RequestBody StockKeepingUnitInDTO stockKeepingUnit) {
