@@ -2,6 +2,7 @@ package org.ketan.controllers;
 
 import java.util.List;
 
+import org.ketan.dto.SupplierDTO;
 import org.ketan.model.Supplier;
 import org.ketan.services.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,22 +19,22 @@ public class SupplierController {
 	private SupplierService supplierService;
 	
 	@RequestMapping("/suppliers")
-	public List<Supplier> getAllSuppliers() {
+	public List<SupplierDTO> getAllSuppliers() {
 		return supplierService.getAllSuppliers();
 	}
 	
 	@RequestMapping("/supplier/{id}")
-	public Supplier getSupplier(@PathVariable int id) {
+	public SupplierDTO getSupplier(@PathVariable int id) {
 		return supplierService.getSupplier(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/suppliers")
-	public void addSupplier(@RequestBody Supplier supplier) {
+	public void addSupplier(@RequestBody SupplierDTO supplier) {
 		supplierService.addSupplier(supplier);
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT, value = "/supplier/{id}")
-	public void updateSupplier(@RequestBody Supplier supplier,@PathVariable int id) {
+	public void updateSupplier(@RequestBody SupplierDTO supplier,@PathVariable int id) {
 		supplierService.updateSupplier(supplier,id);
 	}
 	

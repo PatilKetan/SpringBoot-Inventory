@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.ketan.dto.ItemDTO;
+import org.ketan.dto.ItemInDTO;
+import org.ketan.mapper.BeanMapperAdapter;
 import org.ketan.model.Item;
 import org.ketan.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,23 +18,31 @@ public class ItemService {
 	@Autowired
 	private ItemRepository itemRepository;
 	
-	public List<Item> getAllItems() {
-		List<Item> items = new ArrayList<Item>();
-		itemRepository.findAll().forEach(items::add);
-		return items;
+	@Autowired
+	private BeanMapperAdapter beanMapper;
+	
+	public List<ItemDTO> getAllItems() {
+		List<ItemDTO> itemsDTOList = new ArrayList<ItemDTO>();
+		Iterable<Item> itemList = itemRepository.findAll();
+		
+		for (Item item : itemList) {
+			itemsDTOList.add(beanMapper.map(item, ItemDTO.class));
+		}
+		
+		return itemsDTOList;
 	}
 	
-	public Item getItem(int id) {
-		return itemRepository.findOne(id);
+	public ItemDTO getItem(int id) {
+		return beanMapper.map(itemRepository.findOne(id),ItemDTO.class);
 	}
 	
-	public void addItem(Item item) {
-		itemRepository.save(item);
+	public void addItem(ItemInDTO item) {
+		itemRepository.save(beanMapper.map(item, Item.class));
 	}
 	
 	
-	public void updateItem(Item item, int id) {
-		itemRepository.save(item);
+	public void updateItem(ItemInDTO item, int id) {
+		itemRepository.save(beanMapper.map(item, Item.class));
 	}
 
 	public void deleteItem(int id) {
